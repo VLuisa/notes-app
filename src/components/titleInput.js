@@ -24,15 +24,18 @@ class TitleInput extends Component {
   }
   render() {
     return (
-      <form className="titleCreate" onSubmit={this.handleCreate}>
-        <input
-          type="text"
-          placeholder="New note title..."
-          value={this.state.title}
-          onChange={this.onInputChange}
-        />
-        <input type="submit" value="Create" />
-      </form>
+      <div id="inputTitle">
+        <h1>N O T E S</h1>
+        <form className="titleCreate" onSubmit={this.handleCreate}>
+          <input id="inputBox"
+            type="text"
+            placeholder="New note title..."
+            value={this.state.title}
+            onChange={this.onInputChange}
+          />
+          <input id="create_button" type="submit" value="Create" />
+        </form>
+      </div>
     );
   }
 }

@@ -1,19 +1,30 @@
-$accent-color: #ff7575;
+$primary-color: lighten(#ff7575, 2%);
+$accent-color: #D6EFFF;
+$font-stack: 'Delius', cursive;
 
 body {
   font-family: "Roboto", sans-serif;
   color: rgb(10%, 10%, 10%);
-  background: white;
+  background: $primary-color;
   margin: 50px;
 }
 
+h1 {
+  text-align: center;
+  /*font-family: $font-stack;*/
+  color: $accent-color;
+}
+
 #note_comp {
-  background-color: accent-color;
+  background-color: white;
   display: flex;
   flex-flow: column;
   justify-content: flex-start;
   padding: 1em;
   margin: 1em;
+  border: solid 0.3em $accent-color;
+  width: 250px;
+  height: 250px;
 }
 
 #note_header {
@@ -22,11 +33,37 @@ body {
   justify-content: space-between;
 }
 
+#create_button {
+
+  margin-left: 1em;
+  outline: none;
+}
+#create_button:hover {
+  background-color: darken($accent-color,20%);
+}
+
+#inputBox {
+  border: none;
+  padding: 0.2em;
+  outline: none;
+}
+
 #fa-icon {
   padding: 0.5em;
 }
-
+/*
 #page_header {
   display: flex;
   flex-flow: row wrap;
+}*/
+
+.titleCreate {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+}
+
+#create_button {
+  background-color: $accent-color;
+  border: none;
 }
