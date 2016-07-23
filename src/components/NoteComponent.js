@@ -9,9 +9,7 @@ const NoteBody = (props) => {
   if (props.editing) {
     return (
       <div>
-        <TextareaAutosize
-          value={props.note.text} onChange={props.handleUpdate}
-        />
+        <TextareaAutosize value={event.target.value} onChange={props.updateNote} />
       </div>
   );
   } else {
@@ -69,7 +67,6 @@ class NoteComponent extends Component {
               <div onClick={() => { this.setState({ editing: !this.state.editing }); }} >
                 <EditIcon editing={this.state.editing} />
               </div>
-              <NoteBody onChange={(id, event) => this.props.updateNote(id, event)} editing={this.state.editing} note={this.props.note} />
             </div>
             <div id="alignright">
               <FontAwesome
@@ -77,6 +74,9 @@ class NoteComponent extends Component {
                 name="arrows-alt"
               />
             </div>
+          </div>
+          <div id="note_body">
+            <NoteBody onChange={(id, event) => this.props.updateNote(id, event)} editing={this.state.editing} note={this.props.note} />
           </div>
           {/* <div>{this.props.text}</div>*/}
         </div>

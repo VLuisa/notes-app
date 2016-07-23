@@ -1,5 +1,5 @@
 $primary-color: lighten(#ff7575, 2%);
-$accent-color: #D6EFFF;
+$accent-color: #DFEFFF;
 $font-stack: 'Delius', cursive;
 
 body {
@@ -11,31 +11,31 @@ body {
 
 h1 {
   text-align: center;
-  /*font-family: $font-stack;*/
   color: $accent-color;
 }
 
 #note_comp {
   background-color: white;
-  /*
-  display: flex;
-  flex-flow: column;
-  justify-content: flex-start;*/
-  padding: 1em;
   margin: 1em;
-  border: solid 0.3em $accent-color;
-  height: auto;
-  width: auto;
+  resize: both;
+  overflow: auto;
+  border: 5px solid $accent-color;
+  width: 200px;
+  height: 200px;
+  min-width: 200px;
+  min-height: 200px;
 }
 
 #note_header {
+  background-color: $accent-color;
+  padding: 1em;
   display: flex;
   flex-flow: row wrap;
   justify-content: space-between;
+  align-items: baseline;
 }
 
 #create_button {
-
   margin-left: 1em;
   outline: none;
 }
@@ -43,25 +43,29 @@ h1 {
   background-color: darken($accent-color,20%);
 }
 
+#align_left {
+  display: flex;
+  flex-flow: row wrap;
+  align-items: baseline;
+  font-weight: bold;
+}
+
 #inputBox {
   border: none;
   padding: 0.2em;
   outline: none;
 }
+#note_body {
+  padding: 0.5em;
+}
 
 #fa-icon {
   padding: 0.5em;
 }
-/*
-#page_header {
-  display: flex;
-  flex-flow: row wrap;
-}*/
 
-.titleCreate {
-  display: flex;
-  flex-flow: row wrap;
-  justify-content: center;
+#inputTitle {
+  align-items: center;
+  text-align: center;
 }
 
 #create_button {

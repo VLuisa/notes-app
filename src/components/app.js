@@ -23,7 +23,7 @@ class App extends Component {
       title,
       x: 20,
       y: 20,
-      text: 'note content',
+      text: '',
     };
     this.setState({
       notes: this.state.notes.set(title, note),
