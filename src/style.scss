@@ -1,6 +1,32 @@
+$accent-color: #ff7575;
+
 body {
   font-family: "Roboto", sans-serif;
   color: rgb(10%, 10%, 10%);
-  background: darken(white, 10%);
+  background: white;
   margin: 50px;
+}
+
+#note_comp {
+  background-color: accent-color;
+  display: flex;
+  flex-flow: column;
+  justify-content: flex-start;
+  padding: 1em;
+  margin: 1em;
+}
+
+#note_header {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-between;
+}
+
+#fa-icon {
+  padding: 0.5em;
+}
+
+#page_header {
+  display: flex;
+  flex-flow: row wrap;
 }
