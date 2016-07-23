@@ -16,13 +16,14 @@ class App extends Component {
     };
     this.createNewNote = this.createNewNote.bind(this);
     this.deleteNote = this.deleteNote.bind(this);
+    this.updateNote = this.updateNote.bind(this);
   }
   createNewNote(title) {
     const note = {
       title,
-      x: 100,
-      y: 100,
-      text: 'note text',
+      x: 20,
+      y: 20,
+      text: 'note content',
     };
     this.setState({
       notes: this.state.notes.set(title, note),
@@ -33,14 +34,14 @@ class App extends Component {
       notes: this.state.notes.delete(id),
     });
   }
-  displayNotes() {
-    return this.state.notes.entrySeq().map(([id, note]) => {
-      return <NoteComponent id={id} note={note} onDelete={this.deleteNote} onUpdateNote={this.updateNote} />;
-    });
-  }
   updateNote(id, event) {
     this.setState({
       notes: this.state.notes.update(id, (n) => { return Object.assign({}, n, { text: event.target.value }); }),
+    });
+  }
+  displayNotes() {
+    return this.state.notes.entrySeq().map(([id, note]) => {
+      return <NoteComponent id={id} note={note} onDelete={this.deleteNote} updateNote={(noteId, event) => this.props.updateNote(noteId, event)} key={id} />;
     });
   }
   render() {

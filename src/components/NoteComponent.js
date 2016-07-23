@@ -10,9 +10,7 @@ const NoteBody = (props) => {
     return (
       <div>
         <TextareaAutosize
-          defaultValue={props.note.text}
-          // onChange={e => props.onUpdateChange(event.target.value)}
-          onChange={props.onUpdate}
+          value={props.note.text} onChange={props.handleUpdate}
         />
       </div>
   );
@@ -43,21 +41,17 @@ class NoteComponent extends Component {
     this.state = {
       editing: false,
     };
+    this.handleUpdate = this.handleUpdate.bind(this);
   }
-  // onDrage()
-
-  // updateNote(id, event) {
-  //   this.setState({
-  //     notes: this.state.notes.update(id, (n) => { return Object.assign({}, n, { text: event.target.value }); }),
-  //   });
-  // }
-
+  handleUpdate(event) {
+    this.props.updateNote(this.props.id, event);
+  }
   render() {
     return (
       <Draggable
         handle=".arrows-alt"
         grid={[25, 25]}
-        defaultPosition={{ x: 20, y: 20 }}
+        defaultPosition={{ x: this.props.note.x, y: this.props.note.y }}
         // position={position}
         // onStart={this.onStartDrag}
         onDrag={this.onDrag}
@@ -75,7 +69,7 @@ class NoteComponent extends Component {
               <div onClick={() => { this.setState({ editing: !this.state.editing }); }} >
                 <EditIcon editing={this.state.editing} />
               </div>
-              <NoteBody onUpdate={() => { this.props.onUpdateNote(this.props.id, event); }} editing={this.state.editing} note={this.props.note} />
+              <NoteBody onChange={(id, event) => this.props.updateNote(id, event)} editing={this.state.editing} note={this.props.note} />
             </div>
             <div id="alignright">
               <FontAwesome
@@ -84,7 +78,7 @@ class NoteComponent extends Component {
               />
             </div>
           </div>
-          <div>{this.props.text}</div>
+          {/* <div>{this.props.text}</div>*/}
         </div>
       </Draggable>
     );
