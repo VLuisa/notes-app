@@ -1,7 +1,6 @@
-
 import React, { Component } from 'react';
 import marked from 'marked';
-import TextareaAutosize from 'react-textarea-autosize';
+import Textarea from 'react-textarea-autosize';
 import Draggable from 'react-draggable';
 let FontAwesome = require('react-fontawesome');
 
@@ -9,7 +8,7 @@ const NoteBody = (props) => {
   if (props.editing) {
     return (
       <div>
-        <TextareaAutosize value={event.target.value} onChange={props.updateNote} />
+        <Textarea value={props.note.text} onChange={props.onChange} />
       </div>
   );
   } else {
@@ -42,13 +41,13 @@ class NoteComponent extends Component {
     this.handleUpdate = this.handleUpdate.bind(this);
   }
   handleUpdate(event) {
-    this.props.updateNote(this.props.id, event);
+    this.props.updateNote(this.props.id, { text: event.target.value });
   }
   render() {
     return (
       <Draggable
         handle=".arrows-alt"
-        grid={[25, 25]}
+        grid={[10, 10]}
         defaultPosition={{ x: this.props.note.x, y: this.props.note.y }}
         // position={position}
         // onStart={this.onStartDrag}
@@ -76,9 +75,8 @@ class NoteComponent extends Component {
             </div>
           </div>
           <div id="note_body">
-            <NoteBody onChange={(id, event) => this.props.updateNote(id, event)} editing={this.state.editing} note={this.props.note} />
+            <NoteBody onChange={this.handleUpdate} editing={this.state.editing} note={this.props.note} />
           </div>
-          {/* <div>{this.props.text}</div>*/}
         </div>
       </Draggable>
     );

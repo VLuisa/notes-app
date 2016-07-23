@@ -5,6 +5,7 @@ const Immutable = require('immutable');
 import TitleInput from './titleInput';
 import NoteComponent from './NoteComponent';
 
+
 // example class based component (smart component)
 class App extends Component {
   constructor(props) {
@@ -34,19 +35,20 @@ class App extends Component {
       notes: this.state.notes.delete(id),
     });
   }
-  updateNote(id, event) {
+  updateNote(id, fields) {
     this.setState({
-      notes: this.state.notes.update(id, (n) => { return Object.assign({}, n, { text: event.target.value }); }),
+      notes: this.state.notes.update(id, (n) => { return Object.assign({}, n, fields); }),
     });
   }
   displayNotes() {
     return this.state.notes.entrySeq().map(([id, note]) => {
-      return <NoteComponent id={id} note={note} onDelete={this.deleteNote} updateNote={(noteId, event) => this.props.updateNote(noteId, event)} key={id} />;
+      return <NoteComponent id={id} note={note} onDelete={this.deleteNote} updateNote={this.updateNote} key={id} />;
     });
   }
   render() {
     return (
       <div>
+        {/* <ToggleTheme />*/}
         <TitleInput onCreateClick={this.createNewNote} />
         {this.displayNotes()}
       </div>

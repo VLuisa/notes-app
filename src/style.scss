@@ -1,4 +1,4 @@
-$primary-color: lighten(#ff7575, 2%);
+$primary-color: #ff7575;
 $accent-color: #DFEFFF;
 $font-stack: 'Delius', cursive;
 
@@ -24,6 +24,7 @@ h1 {
   height: 200px;
   min-width: 200px;
   min-height: 200px;
+  position: absolute;
 }
 
 #note_header {
@@ -71,4 +72,8 @@ h1 {
 #create_button {
   background-color: $accent-color;
   border: none;
+}
+
+#background_cont {
+  display: flex;
 }
