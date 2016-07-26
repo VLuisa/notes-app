@@ -39,9 +39,13 @@ class NoteComponent extends Component {
       editing: false,
     };
     this.handleUpdate = this.handleUpdate.bind(this);
+    this.handleDrag = this.handleDrag.bind(this);
   }
   handleUpdate(event) {
     this.props.updateNote(this.props.id, { text: event.target.value });
+  }
+  handleDrag(e, data) {
+    this.props.updateNote(this.props.id, { x: data.x, y: data.y });
   }
   render() {
     return (
@@ -49,10 +53,10 @@ class NoteComponent extends Component {
         handle=".arrows-alt"
         grid={[10, 10]}
         defaultPosition={{ x: this.props.note.x, y: this.props.note.y }}
-        // position={position}
-        // onStart={this.onStartDrag}
-        onDrag={this.onDrag}
-        // onStop={this.onStopDrag}
+        position={this.props.note}
+        onStart={this.onStartDrag}
+        onDrag={this.handleDrag}
+        onStop={this.onStopDrag}
       >
         <div id="note_comp">
           <div id="note_header">
