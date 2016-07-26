@@ -72,7 +72,7 @@ class NoteComponent extends Component {
               </div>
             </div>
             <div id="alignright">
-              <FontAwesome
+              <FontAwesome id="fa-icon"
                 className="arrows-alt"
                 name="arrows-alt"
               />
