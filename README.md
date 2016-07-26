@@ -9,3 +9,4 @@ Web app built with React that allows you to create notes and edit and delete the
 - When editing, icon spins
 - Added simple bright styling
 - Notes are resizable
+- Added highlight.js to highlight the syntax within markdown

@@ -4,6 +4,13 @@ import Textarea from 'react-textarea-autosize';
 import Draggable from 'react-draggable';
 let FontAwesome = require('react-fontawesome');
 
+
+marked.setOptions({
+  highlight(code) {
+    return require('highlight.js').highlightAuto(code).value;
+  },
+});
+
 const NoteBody = (props) => {
   if (props.editing) {
     return (
