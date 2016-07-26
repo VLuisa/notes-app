@@ -1,6 +1,7 @@
 import '../style.scss';
 import React, { Component } from 'react';
 const Immutable = require('immutable');
+import * as firebase from '../firebasedb';
 
 import TitleInput from './titleInput';
 import NoteComponent from './NoteComponent';
@@ -19,6 +20,9 @@ class App extends Component {
     this.deleteNote = this.deleteNote.bind(this);
     this.updateNote = this.updateNote.bind(this);
   }
+  componentDidMount() {
+    firebase.subscribeToNotes((notes) => this.setState({ notes: Immutable.Map(notes) }));
+  }
   createNewNote(title) {
     const note = {
       title,
@@ -26,19 +30,14 @@ class App extends Component {
       y: 20,
       text: '',
     };
-    this.setState({
-      notes: this.state.notes.set(title, note),
-    });
+    firebase.createNote(note);
   }
+
   deleteNote(id) {
-    this.setState({
-      notes: this.state.notes.delete(id),
-    });
+    firebase.removeNote(id);
   }
   updateNote(id, fields) {
-    this.setState({
-      notes: this.state.notes.update(id, (n) => { return Object.assign({}, n, fields); }),
-    });
+    firebase.updateNote(id, fields);
   }
   displayNotes() {
     return this.state.notes.entrySeq().map(([id, note]) => {
@@ -48,7 +47,6 @@ class App extends Component {
   render() {
     return (
       <div>
-        {/* <ToggleTheme />*/}
         <TitleInput onCreateClick={this.createNewNote} />
         {this.displayNotes()}
       </div>
